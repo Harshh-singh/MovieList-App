@@ -10,10 +10,9 @@ const port = process.env.Port;
 const app = express();
 
 const corsOptions = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, 
-  optionsSuccessStatus: 204, 
+  origin: 'https://movie-list-app-frontend-4z52zky7j-harshh-singhs-projects.vercel.app',
+  methods: ['GET', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
 };
 
 app.use(cors(corsOptions));
