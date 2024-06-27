@@ -10,7 +10,7 @@ const port = process.env.Port;
 const app = express();
 
 const corsOptions = {
-origin:'https://movie-list-app-frontend-ashy.vercel.app/',
+origin:'*',
 methods:'GET,PUT,DELETE,POST',
 credentials: true,
 optionsSuccessStatus:204,
