@@ -23,5 +23,6 @@ app.use('/api/movies',movieRouter);
 
 
 app.listen(port, ()=>{
+    console.log("backend running")
     console.log(`App running on port ${port}`);
 })
