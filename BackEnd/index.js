@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 const express = require('express');
 const db = require('./config/mongoose');
 const cors = require('cors');
 const movieRouter = require('./routes/movies');
-const port = 5000;
+const port = process.env.Port;
 
 const app = express();
 
