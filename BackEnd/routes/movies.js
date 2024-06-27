@@ -9,7 +9,7 @@ router.get('/', async(req,res)=>{
         const moviesData = (await movies).map((movie)=>movie.toObject());
         res.json(moviesData);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(200).json("get api error");
     }
 })
 
