@@ -27,7 +27,7 @@ export const fetchMovies = createAsyncThunk(
     'movies/fetchMovies',
     async(_, {rejectWithValue}) => {
         try {
-            const res = await axios.get("https://movie-list-app-alpha.vercel.app/api/movies");
+            const res = await axios.get("https://movie-list-app-frontend-4z52zky7j-harshh-singhs-projects.vercel.app/api/movies");
             console.log(res.data);
             return res.data;
         } catch (error) {
@@ -41,7 +41,7 @@ export const deleteMovie = createAsyncThunk(
     'movies/deleteMovie',
     async(movie, {rejectWithValue}) => {
         try {
-            const res = await axios.delete(`https://movie-list-app-alpha.vercel.app/api/movies/${movie}`);
+            const res = await axios.delete(`https://movie-list-6q10ght6n-harshh-singhs-projects.vercel.app/api/movies/${movie}`);
             return res.data;
         } catch (error) {
             return rejectWithValue(error.res.data);
