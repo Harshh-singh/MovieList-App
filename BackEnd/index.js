@@ -9,10 +9,19 @@ const port = process.env.Port;
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://movie-list-app-frontend-4z52zky7j-harshh-singhs-projects.vercel.app'
+];
+
 const corsOptions = {
-  origin: 'https://movie-list-app-frontend-4z52zky7j-harshh-singhs-projects.vercel.app',
-  methods: ['GET', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 };
 
 app.use(cors(corsOptions));
