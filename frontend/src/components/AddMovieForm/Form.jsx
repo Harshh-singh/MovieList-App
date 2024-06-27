@@ -1,10 +1,12 @@
 import styles from './form.module.css';
 import { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { addMovie } from '../../redux/reducers/movieReducer';
 import { useNavigate } from 'react-router-dom';
+import { changeDetails } from '../../redux/reducers/movieReducer';
 
-function MovieForm({movie={}, onCancel}){
+function MovieForm(){
+    const movie = useSelector((state)=>state.movieReducer.editMovie);
     const [title, setTitle] = useState(movie.title || '');
     const [description, setDescription] = useState(movie.description || '');
     const [releaseYear, setReleaseYear] = useState(movie.releaseYear || '');
@@ -18,6 +20,11 @@ function MovieForm({movie={}, onCancel}){
         dispatch(addMovie(movieData));
         navigate('/');
       };
+
+    const onCancel = (event) => {
+        event.preventDefault();
+        navigate('/');
+    }
     
 
     return(
@@ -61,7 +68,7 @@ function MovieForm({movie={}, onCancel}){
                 </div>
                 <div className={styles.formactions}>
                     <button type="submit">Save</button>
-                    <button type="button" onClick={onCancel}>Cancel</button>
+                    <button type="button" onClick={(event)=>onCancel(event)}>Cancel</button>
                 </div>
         </form>
     </div>

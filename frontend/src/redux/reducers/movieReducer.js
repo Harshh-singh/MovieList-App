@@ -1,23 +1,15 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {useEffect} from 'react';
 
 const initialState = {
-    movies:[
-        {
-            title:"The Amazing SpiderMan",
-            description:"Peter Parker a ordinary boy becomes a superhero after a spider bite him",
-            releaseYear:"2018",
-            genre:"Fantasy",
-            rating:0,
-            watched:true
-        },
-    ],
+    movies:[],
+    myMovie:null,
     status: 'idle',
-    error: null
+    error: null,
+    editMovie:null,
 };
 
-//to send a movie to server-side
+//to send a movie to server-side for add in db
 export const addMovie = createAsyncThunk(
     'movies/addMovie',
     async(movieData, { rejectWithValue }) => {
@@ -48,7 +40,6 @@ export const fetchMovies = createAsyncThunk(
 export const deleteMovie = createAsyncThunk(
     'movies/deleteMovie',
     async(movie, {rejectWithValue}) => {
-        console.log(movie);
         try {
             const res = await axios.delete(`http://localhost:5000/api/movies/${movie}`);
             return res.data;
@@ -58,13 +49,71 @@ export const deleteMovie = createAsyncThunk(
     }
 );
 
+//to get deatils of a movie we selected
+export const getDetails = createAsyncThunk(
+    'movies/getDetails',
+    async(movie,{rejectWithValue})=>{
+        try {
+            const res = await axios.get(`http://localhost:5000/api/movies/${movie}`);
+            localStorage.setItem('myMovie', JSON.stringify(res));
+            return res.data;
+        }catch(error){
+            return rejectWithValue(error.res.data);
+        }
+    }
+)
+
+//to change watched status of a movie
+export const watchedstatus = createAsyncThunk(
+    'movies/watchedStatus',
+    async(movie, {rejectWithValue})=>{
+        try {
+            const res = await axios.put(`http://localhost:5000/api/movies/${movie}/watchedStatus`);
+            return res.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
+//get details of movie for form filled
+export const editDetails = createAsyncThunk(
+    'movies/editDetails',
+    async (movieId, { rejectWithValue }) => {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/movies/${movieId}/editDetails`);
+            return res.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const changeDetails = createAsyncThunk(
+    'movies/changeDetails',
+    async (movieId, movieData, {rejectWithValue}) => {
+        try {
+            const res = await axios.put(`http://localhost:5000/api/movies/${movieId}/changeDetails`, movieData );
+            console.log(res.data);
+            return res.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
 
 const MovieSlice = createSlice({
     name: "movie",
     initialState:initialState,
-    reducers:{},
+    reducers:{
+        addnewMovie:(state) => {
+            state.editMovie = '';
+        }
+    },
     extraReducers: (builder) => {
         builder
+        // cases for addMovie
         .addCase(addMovie.pending, (state) => {
             state.status = 'loading';
         })
@@ -76,7 +125,7 @@ const MovieSlice = createSlice({
             state.status = 'failed';
             state.error = action.payload;
           })
-
+          // cases for fetchMovies
         .addCase(fetchMovies.pending, (state) => {
             state.status = 'loading';
         })
@@ -88,7 +137,7 @@ const MovieSlice = createSlice({
             state.status = 'failed';
             state.error = action.payload;
         })
-
+            // cases for deleteMovie
         .addCase(deleteMovie.pending, (state) => {
             state.status = 'loading';
         })
@@ -100,7 +149,31 @@ const MovieSlice = createSlice({
         .addCase(deleteMovie.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.payload;
-        });
+        })
+            // cases for getDetails
+        .addCase(getDetails.pending, (state) => {
+            state.status = 'loading';
+        })
+        .addCase(getDetails.fulfilled, (state,action) => {
+            state.status = 'succeeded';
+            state.myMovie = action.payload;
+        })
+        .addCase(getDetails.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.payload;
+        })
+        //add cases for editDetails
+        .addCase(editDetails.pending, (state)=>{
+            state.status = 'loading';
+        })
+        .addCase(editDetails.fulfilled, (state, action)=>{
+            state.status = 'succeeded';
+            state.editMovie = action.payload;
+        })
+        .addCase(editDetails.rejected, (state, action)=>{
+            state.status = 'failed';
+            state.error = action.payload;
+        })
     },
 });
 

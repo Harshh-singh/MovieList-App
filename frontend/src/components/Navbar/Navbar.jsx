@@ -1,13 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
+import { useDispatch } from 'react-redux';
+import { movieAction } from '../../redux/reducers/movieReducer';
 
 function NavBar() {
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleAddMovie = () => {
         navigate('/newMovie')
+        dispatch(movieAction.addnewMovie());
     }
 
     return(
