@@ -1,10 +1,15 @@
 const express = require('express');
-const app = express();
+const db = require('./config/mongoose');
+const cors = require('cors');
+const movieRouter = require('./routes/movies');
 const port = 5000;
 
-app.get('/api', (req, res)=>{
-    res.json({"users":["userOne", "userTwo", "userThree"]})
-})
+const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+app.use('/api/movies',movieRouter);
 
 
 app.listen(port, ()=>{

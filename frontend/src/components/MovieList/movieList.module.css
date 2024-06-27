@@ -1,0 +1,23 @@
+.MovieList{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-family: system-ui;
+    height: auto;
+    padding: 2vh 8vw;
+    background-color: rgba(0, 0, 0, 0.833);
+    width: 100%;
+    color: rgba(211, 211, 211, 0.513)
+};
+    
+.MovieList span{
+    font-size: 15px;
+}
+
+.movies{
+    margin-top: 5vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8vh;
+}

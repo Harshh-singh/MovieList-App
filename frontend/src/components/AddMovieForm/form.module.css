@@ -1,0 +1,66 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100vh;
+    border: 1px solid black;
+    padding: 5vh 0vh;
+    background-color: rgba(0, 0, 0, 0.871);
+}
+.container span{
+    color: rgb(223, 75, 75);
+    font-size: 25px;
+    font-weight: 700;
+}
+.movieform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40%;
+    width: 25%;
+    padding: 10vh;
+    background-color: rgba(0, 0, 0, 0.833);
+    border-radius: 10px;
+  }
+  
+  .formgroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formgroup label {
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+    font-weight:600;
+    color: rgba(211, 211, 211, 0.726);
+  }
+  
+  .formgroup input,
+  .formgroup textarea {
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .formactions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .formactions button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .formactions button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .formactions button[type="button"] {
+    background-color: #f44336;
+    color: white;
+  }

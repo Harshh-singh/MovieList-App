@@ -1,0 +1,85 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    /* margin: 2vh; */
+    color:white ;
+    min-height: 30vh;
+    min-width: 12vw;
+    max-width: 12vw;
+    border-radius: 10px;
+    background-color: rgb(223, 75, 75);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover{
+    transform: scale(1.1);
+}
+
+.titleSection{
+    display: flex;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1vh 0vh;
+    color: rgba(0, 0, 0, 0.815);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.editsection img{
+    height: 15px;
+}
+
+.editsection span{
+   color: black;
+   font-weight: 500;
+}
+
+.editsection div:hover{
+    cursor: pointer;
+}
+
+.genre{
+    color: rgba(2, 2, 2, 0.513);
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 1vh;
+}
+
+.ratingsection{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.ratingsection .rating span{
+    font-size: 18px;
+    color: black;
+}
+
+.rating img{
+    height: 15px;
+    margin: 0px 2px;
+}
+
+.rating img:nth-child(2){
+    height: 20px;
+}
+
+.ratingsection .watchstatus{
+    display: flex;
+    justify-content: center;
+}
+
+.ratingsection .watchstatus span{
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.ratingsection .watchstatus input[type="checkbox"] {
+    accent-color: black;
+}
