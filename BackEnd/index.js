@@ -1,3 +1,4 @@
+const cors = require("cors");
 require('dotenv').config();
 
 const express = require('express');
@@ -8,11 +9,13 @@ const port = process.env.Port;
 
 const app = express();
 
-app.use(cors(
-    {
-        origin:["https://movie-list-app-frontend-ashy.vercel.app"]
-    }
-));
+const corsOptions = {
+origin:'https://movie-list-app-frontend-ashy.vercel.app',
+methods:'GET,PUT,DELETE',
+credentials: true,
+optionsSuccessStatus:204,
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use('/api/movies',movieRouter);
