@@ -14,7 +14,7 @@ export const addMovie = createAsyncThunk(
     'movies/addMovie',
     async(movieData, { rejectWithValue }) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/movies', movieData);
+            const res = await axios.post('https://movie-list-app-alpha.vercel.app/api/movies', movieData);
             return res.data;
         } catch (error) {
             return rejectWithValue(error.res.data);
@@ -27,7 +27,7 @@ export const fetchMovies = createAsyncThunk(
     'movies/fetchMovies',
     async(_, {rejectWithValue}) => {
         try {
-            const res = await axios.get("http://localhost:5000/api/movies");
+            const res = await axios.get("https://movie-list-app-alpha.vercel.app/api/movies");
             console.log(res.data);
             return res.data;
         } catch (error) {
@@ -41,7 +41,7 @@ export const deleteMovie = createAsyncThunk(
     'movies/deleteMovie',
     async(movie, {rejectWithValue}) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/movies/${movie}`);
+            const res = await axios.delete(`https://movie-list-app-alpha.vercel.app/api/movies/${movie}`);
             return res.data;
         } catch (error) {
             return rejectWithValue(error.res.data);
@@ -54,7 +54,7 @@ export const getDetails = createAsyncThunk(
     'movies/getDetails',
     async(movie,{rejectWithValue})=>{
         try {
-            const res = await axios.get(`http://localhost:5000/api/movies/${movie}`);
+            const res = await axios.get(`https://movie-list-app-alpha.vercel.app/api/movies/${movie}`);
             localStorage.setItem('myMovie', JSON.stringify(res));
             return res.data;
         }catch(error){
@@ -68,7 +68,7 @@ export const watchedstatus = createAsyncThunk(
     'movies/watchedStatus',
     async(movie, {rejectWithValue})=>{
         try {
-            const res = await axios.put(`http://localhost:5000/api/movies/${movie}/watchedStatus`);
+            const res = await axios.put(`https://movie-list-app-alpha.vercel.app/api/movies/${movie}/watchedStatus`);
             return res.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -81,7 +81,7 @@ export const editDetails = createAsyncThunk(
     'movies/editDetails',
     async (movieId, { rejectWithValue }) => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/movies/${movieId}/editDetails`);
+            const res = await axios.get(`https://movie-list-app-alpha.vercel.app/api/movies/${movieId}/editDetails`);
             return res.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -93,7 +93,7 @@ export const changeDetails = createAsyncThunk(
     'movies/changeDetails',
     async (movieId, movieData, {rejectWithValue}) => {
         try {
-            const res = await axios.put(`http://localhost:5000/api/movies/${movieId}/changeDetails`, movieData );
+            const res = await axios.put(`https://movie-list-app-alpha.vercel.app/api/movies/${movieId}/changeDetails`, movieData );
             console.log(res.data);
             return res.data;
         } catch (error) {
