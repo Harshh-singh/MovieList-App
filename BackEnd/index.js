@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin:https://movie-list-app-frontend-ashy.vercel.app/
+        origin:["https://movie-list-app-frontend-ashy.vercel.app/"]
     }
 ));
 
