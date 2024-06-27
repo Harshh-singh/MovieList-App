@@ -8,7 +8,11 @@ const port = process.env.Port;
 
 const app = express();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin:https://movie-list-app-frontend-ashy.vercel.app/
+    }
+));
 
 app.use(express.json());
 app.use('/api/movies',movieRouter);
