@@ -21,8 +21,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/movies',movieRouter);
 
+app.get(()=>{
+  console.log("backend running")
+})
 
 app.listen(port, ()=>{
-    console.log("backend running")
+    
     console.log(`App running on port ${port}`);
 })
